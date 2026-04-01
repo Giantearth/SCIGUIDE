@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>SCI 治疗参考网页原型</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div id="landing-view" class="landing-view">
+      <section class="landing-panel">
+        <div class="landing-copy">
+          <p class="eyebrow">SCI GUIDE PROTOTYPE</p>
+          <h1>脊髓损伤治疗参考</h1>
+          <p class="landing-lead">
+            这是一个基于 `DATABASE` 的静态网页原型。首页只负责录入患者信息，生成后进入下一页查看推荐内容。
+          </p>
+          <div class="landing-tags">
+            <span>红旗征优先</span>
+            <span>职业粗筛</span>
+            <span>分步式流程</span>
+            <span>手机端优先</span>
+          </div>
+        </div>
+
+        <form id="intake-form" class="intake-card landing-form">
+          <h2>患者信息录入</h2>
+
+          <label>
+            <span>患者编号</span>
+            <input id="patient-id" name="patientId" type="text" placeholder="例如 PT001 / A12" />
+          </label>
+
+          <label>
+            <span>病因</span>
+            <select id="etiology" name="etiology">
+              <option value="all">未限定</option>
+              <option value="traumatic">创伤性</option>
+              <option value="nontraumatic">非创伤性</option>
+            </select>
+          </label>
+
+          <label id="subtype-field" hidden>
+            <span>非创伤性具体分类</span>
+            <select id="subtype" name="subtype">
+              <option value="all">未限定</option>
+              <option value="ischemic">缺血性</option>
+              <option value="neoplastic">肿瘤性</option>
+              <option value="other_nontraumatic">其他非创伤性及特殊机制</option>
+            </select>
+          </label>
+
+          <label>
+            <span>损伤节段</span>
+            <select id="level" name="level">
+              <option value="all">未限定</option>
+              <option value="cervical">颈段 C1-C7</option>
+              <option value="thoracic">胸段 T1-T12</option>
+              <option value="lumbosacral">腰骶段 L1-S5</option>
+            </select>
+          </label>
+
+          <label>
+            <span>ASIA 分级</span>
+            <select id="asia" name="asia">
+              <option value="all">未限定</option>
+              <option value="A">AIS A</option>
+              <option value="B">AIS B</option>
+              <option value="C">AIS C</option>
+              <option value="D">AIS D</option>
+              <option value="E">AIS E</option>
+            </select>
+          </label>
+
+          <label>
+            <span>病程时长</span>
+            <select id="stage" name="stage">
+              <option value="all">未限定</option>
+              <option value="hyperacute">72h 内</option>
+              <option value="acute">14 天内</option>
+              <option value="rehab">14 天以上</option>
+            </select>
+          </label>
+
+          <label>
+            <span>您的职业</span>
+            <select id="profession" name="profession">
+              <option value="all">未限定</option>
+              <option value="PT">PT</option>
+              <option value="OT">OT</option>
+              <option value="ST">ST</option>
+              <option value="RESP">呼吸康复</option>
+            </select>
+          </label>
+
+          <div class="form-actions">
+            <button type="submit" class="primary-btn">生成推荐结果</button>
+            <button type="button" id="reset-form" class="ghost-btn ghost-btn-dark">重置</button>
+          </div>
+        </form>
+      </section>
+    </div>
+
+    <div id="results-view" class="results-view" hidden>
+      <aside class="results-sidebar">
+        <div class="brand">
+          <p class="eyebrow">CURRENT CASE</p>
+          <h2>当前患者信息</h2>
+          <p class="muted muted-on-dark">可以随时返回修改。</p>
+        </div>
+
+        <div id="case-summary" class="summary-card"></div>
+
+        <div class="form-actions">
+          <button type="button" id="edit-case" class="primary-btn">重新填写信息</button>
+        </div>
+
+        <section class="sidebar-note">
+          <h3>使用提示</h3>
+          <ul>
+            <li>先看红旗征，再往下看其他建议</li>
+            <li>其余模块保留折叠，减少干扰</li>
+            <li>四国指南入口先作为原文挂载区</li>
+          </ul>
+        </section>
+      </aside>
+
+      <main class="results-main">
+        <section class="hero">
+          <div>
+            <p class="eyebrow">RECOMMENDATION VIEW</p>
+            <h2>根据当前患者信息，根据指南生成以下建议</h2>
+            <p id="result-summary" class="muted">红旗征优先显示，其余内容按模块依次展开查看。</p>
+          </div>
+        </section>
+
+        <section class="content-grid">
+          <div class="panel">
+            <div class="panel-header">
+              <h3>推荐内容</h3>
+              <p class="muted">先列出全部红旗征，再向下查看其他模块内容。</p>
+            </div>
+            <div id="result-groups" class="result-groups"></div>
+          </div>
+
+          <div class="panel">
+            <div class="panel-header">
+              <h3>四国指南入口</h3>
+              <p class="muted">当前先展示数据库中的来源名称。后续挂入 PDF 或附件后，这里可以变成原文阅读入口。</p>
+            </div>
+            <div id="guideline-list" class="source-list"></div>
+          </div>
+        </section>
+
+        <section class="content-grid single-detail">
+          <div class="panel article-panel">
+            <div class="panel-header">
+              <h3>详细阅读</h3>
+              <p id="article-meta" class="muted">这里保留单篇完整阅读区，推荐内容区也会直接显示具体指导内容。</p>
+            </div>
+            <article id="article-view" class="article-view">
+              <p class="empty-state">这里会显示所选条目的正文内容。</p>
+            </article>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script src="./data.js"></script>
+    <script src="./app.js"></script>
+  </body>
+</html>
