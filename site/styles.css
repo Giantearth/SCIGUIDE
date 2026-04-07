@@ -46,6 +46,7 @@ body {
     radial-gradient(circle at 15% 20%, rgba(99, 175, 205, 0.18), transparent 28%),
     radial-gradient(circle at 85% 15%, rgba(242, 196, 113, 0.18), transparent 22%),
     linear-gradient(180deg, #fcfaf6 0%, #f7f3ee 42%, #eef4f4 100%);
+  overflow-x: hidden;
 }
 
 button,
@@ -481,6 +482,7 @@ a:focus-visible {
 
 .results-main {
   padding: 28px;
+  min-width: 0;
 }
 
 .hero {
@@ -512,6 +514,7 @@ a:focus-visible {
   grid-template-columns: minmax(0, 1fr) 96px minmax(300px, 360px);
   gap: 16px;
   margin-top: 20px;
+  min-width: 0;
 }
 
 .single-detail {
@@ -550,6 +553,7 @@ a:focus-visible {
   display: grid;
   gap: 20px;
   align-content: start;
+  min-width: 0;
 }
 
 .panel {
@@ -579,6 +583,7 @@ a:focus-visible {
   max-height: calc(100vh - 56px);
   display: grid;
   grid-template-rows: auto minmax(0, 1fr);
+  min-width: 0;
 }
 
 .panel-header {
@@ -1006,11 +1011,31 @@ a:focus-visible {
     margin-left: 10px;
     margin-right: 10px;
   }
+
+  .content-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .article-panel {
+    position: static;
+    max-height: none;
+    display: block;
+  }
+
+  .article-view {
+    min-height: 0;
+    overflow: visible;
+  }
+
+  .side-stack {
+    gap: 14px;
+  }
 }
 
-@media (max-width: 1024px) {
+@media (min-width: 761px) and (max-width: 1024px) {
   .content-grid {
-    grid-template-columns: minmax(0, 1fr) minmax(300px, 360px);
+    grid-template-columns: minmax(0, 1fr) minmax(280px, 320px);
   }
 
   .floating-actions-host {
