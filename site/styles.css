@@ -1034,13 +1034,13 @@ a:focus-visible {
   .landing-view,
   .results-main,
   .results-sidebar {
-    padding: 16px;
+    padding: 18px;
   }
 
   .topbar {
-    margin-bottom: 14px;
-    padding: 14px;
-    border-radius: 24px;
+    margin-bottom: 16px;
+    padding: 14px 16px;
+    border-radius: 22px;
     align-items: flex-start;
   }
 
@@ -1054,20 +1054,103 @@ a:focus-visible {
     width: 100%;
   }
 
+  .eyebrow,
+  .metric-kicker,
+  .summary-label {
+    letter-spacing: 0.05em;
+  }
+
   .landing-copy,
   .intake-card,
   .hero,
-  .panel {
-    border-radius: 24px;
+  .panel,
+  .summary-card,
+  .sidebar-note,
+  .source-card {
+    border-radius: 22px;
   }
 
   .landing-copy {
-    padding: 24px;
+    padding: 24px 20px;
   }
 
   .landing-copy h1 {
     max-width: none;
-    font-size: clamp(2rem, 11vw, 3rem);
+    font-size: clamp(2.1rem, 11vw, 3.15rem);
+    line-height: 1.02;
+  }
+
+  .landing-disclaimer {
+    padding: 15px 16px;
+    border-radius: 18px;
+    font-size: 14px;
+    line-height: 1.75;
+  }
+
+  .metric-card {
+    padding: 16px;
+    border-radius: 18px;
+  }
+
+  .metric-card strong {
+    margin-bottom: 6px;
+    font-size: 17px;
+    line-height: 1.2;
+  }
+
+  .metric-card p {
+    font-size: 14px;
+    line-height: 1.7;
+  }
+
+  .intake-card {
+    padding: 22px 18px;
+  }
+
+  .card-intro {
+    gap: 6px;
+    margin-bottom: 16px;
+  }
+
+  .card-intro h2,
+  .brand h2,
+  .hero h2,
+  .panel-header h3 {
+    line-height: 1.12;
+    letter-spacing: -0.025em;
+  }
+
+  .card-intro h2 {
+    font-size: 2rem;
+  }
+
+  .intake-card span {
+    margin-bottom: 10px;
+    font-size: 15px;
+  }
+
+  .intake-card input,
+  .intake-card select {
+    min-height: 56px;
+    padding: 13px 16px;
+    border-radius: 18px;
+    font-size: 17px;
+  }
+
+  .form-grid {
+    gap: 16px;
+  }
+
+  .form-actions {
+    gap: 12px;
+    margin-top: 22px;
+  }
+
+  .primary-btn,
+  .ghost-btn {
+    min-height: 52px;
+    padding: 0 20px;
+    font-size: 16px;
   }
 
   .group-header,
@@ -1080,14 +1163,77 @@ a:focus-visible {
     padding-right: 16px;
   }
 
+  .results-sidebar {
+    gap: 16px;
+  }
+
+  .brand {
+    display: grid;
+    gap: 4px;
+  }
+
+  .brand h2 {
+    font-size: 1.65rem;
+  }
+
+  .summary-card,
+  .sidebar-note {
+    padding: 16px;
+  }
+
+  .summary-label {
+    font-size: 11px;
+  }
+
+  .summary-value {
+    font-size: 15px;
+    line-height: 1.45;
+  }
+
+  .sidebar-note h3 {
+    font-size: 1.1rem;
+  }
+
+  .sidebar-note ul {
+    padding-left: 20px;
+  }
+
+  .sidebar-note li,
+  .sidebar-note p {
+    line-height: 1.72;
+  }
+
+  .hero {
+    padding: 22px 18px;
+  }
+
+  .hero-copy {
+    max-width: none;
+  }
+
+  .hero h2 {
+    font-size: 2.1rem;
+  }
+
+  .hero-copy .muted {
+    font-size: 14px;
+    line-height: 1.7;
+  }
+
+  .spotlight-panel .panel-header > p {
+    display: none;
+  }
+
   .doc-body {
-    margin-left: 10px;
-    margin-right: 10px;
+    margin-left: 8px;
+    margin-right: 8px;
+    padding: 15px 16px;
+    border-radius: 15px;
   }
 
   .content-grid {
     grid-template-columns: 1fr;
-    gap: 14px;
+    gap: 16px;
   }
 
   .floating-actions-host {
@@ -1104,11 +1250,12 @@ a:focus-visible {
   .module-float-button {
     position: static;
     width: auto;
-    min-width: 84px;
-    min-height: 46px;
-    padding: 0 14px;
+    min-width: 92px;
+    min-height: 48px;
+    padding: 0 15px;
     border-radius: 999px;
-    font-size: 13px;
+    font-size: 14px;
+    font-weight: 800;
     line-height: 1;
     box-shadow: 0 12px 24px rgba(31, 43, 51, 0.18);
   }
@@ -1136,7 +1283,7 @@ a:focus-visible {
     position: sticky;
     top: 0;
     z-index: 2;
-    padding: 18px 16px 12px;
+    padding: 18px 16px 14px;
     background: rgba(255, 252, 248, 0.96);
     backdrop-filter: blur(14px);
     border-bottom: 1px solid rgba(47, 65, 74, 0.08);
@@ -1152,27 +1299,33 @@ a:focus-visible {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    min-height: 46px;
-    padding: 0 16px;
+    min-height: 48px;
+    padding: 0 18px;
     border: 1px solid rgba(47, 65, 74, 0.12);
     border-radius: 999px;
     background: rgba(18, 39, 48, 0.9);
     color: #f7fbfc;
     box-shadow: 0 14px 32px rgba(26, 39, 47, 0.24);
+    font-size: 14px;
+    font-weight: 800;
   }
 
   body.mobile-article-open #article-meta {
     padding-right: 84px;
+    font-size: 13px;
+    line-height: 1.6;
   }
 
   .article-view {
     min-height: 0;
     overflow: auto;
+    padding-top: 18px;
     padding-bottom: 96px;
+    font-size: 16px;
   }
 
   .side-stack {
-    gap: 14px;
+    gap: 16px;
   }
 
   .source-list-sidebar .source-card {
@@ -1183,6 +1336,114 @@ a:focus-visible {
     margin-bottom: 10px;
     font-size: 15px;
     line-height: 1.35;
+  }
+
+  .source-card small {
+    font-size: 13px;
+    line-height: 1.55;
+  }
+
+  .guide-link {
+    min-height: 40px;
+    padding: 0 14px;
+    font-size: 14px;
+  }
+
+  .group-card + .group-card {
+    margin-top: 14px;
+  }
+
+  .group-header {
+    gap: 10px;
+    padding-top: 16px;
+    padding-bottom: 16px;
+    top: 12px;
+  }
+
+  .group-header strong {
+    font-size: 18px;
+    line-height: 1.22;
+  }
+
+  .group-header small {
+    margin-top: 5px;
+    font-size: 13px;
+    line-height: 1.55;
+  }
+
+  .group-toggle {
+    min-width: 36px;
+    height: 36px;
+    font-size: 17px;
+  }
+
+  .group-body {
+    gap: 10px;
+    padding: 12px;
+  }
+
+  .doc-button {
+    padding: 15px 16px;
+  }
+
+  .doc-title {
+    font-size: 15px;
+    line-height: 1.38;
+  }
+
+  .doc-meta {
+    margin-top: 6px;
+    font-size: 12px;
+    line-height: 1.55;
+  }
+
+  .doc-inline-title {
+    margin-bottom: 12px;
+    font-size: 17px;
+  }
+
+  .article-view h1,
+  .article-view h2,
+  .article-view h3,
+  .article-view h4 {
+    margin-top: 1.15em;
+    margin-bottom: 0.58em;
+    line-height: 1.24;
+    letter-spacing: -0.025em;
+  }
+
+  .article-view h1 {
+    font-size: 1.92rem;
+  }
+
+  .article-view h2 {
+    font-size: 1.5rem;
+  }
+
+  .article-view h3 {
+    font-size: 1.22rem;
+  }
+
+  .article-view p,
+  .article-view li,
+  .article-view blockquote {
+    font-size: 15px;
+    line-height: 1.82;
+  }
+
+  .article-view ul {
+    padding-left: 20px;
+  }
+
+  .table-wrap {
+    margin: 14px 0;
+  }
+
+  .table-wrap th,
+  .table-wrap td {
+    padding: 10px 11px;
+    font-size: 14px;
+    line-height: 1.65;
   }
 }
 
