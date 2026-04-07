@@ -1,4 +1,4 @@
-(function () {
+﻿(function () {
   const rawDocs = (window.__SCI_DATA__ || []).slice();
   const guides = (window.__SCI_GUIDES__ || []).slice();
 
@@ -78,7 +78,7 @@
 
   const GROUPS = [
     { key: "introduction", title: "阶段简介", summary: "概况、定位与当前优先警示", defaultOpen: true, priority: "normal" },
-    { key: "redflags", title: "全部可能的红旗征", summary: "先看风险与禁忌", defaultOpen: true, priority: "critical" },
+    { key: "redflags", title: "全部可能的红旗征", summary: "请治疗师优先关注红旗征", defaultOpen: true, priority: "critical" },
     { key: "expectation", title: "康复预期", summary: "节段、AIS 与移动潜力", defaultOpen: false, priority: "normal" },
     { key: "stage", title: "康复管理", summary: "按病程阶段查看管理策略", defaultOpen: false, priority: "normal" },
     { key: "goals", title: "康复目标", summary: "按职业与阶段查看目标", defaultOpen: false, priority: "normal" },
@@ -858,6 +858,13 @@
       const body = document.createElement("div");
       body.className = "group-body";
       body.hidden = !group.defaultOpen;
+
+      if (group.key === "redflags") {
+        const disclaimer = document.createElement("div");
+        disclaimer.className = "group-disclaimer";
+        disclaimer.textContent = "仅根据四国指南提供一些信息参考，请以实际情况为准，本网站信息不提供专业医学诊断内容。";
+        body.appendChild(disclaimer);
+      }
 
       header.addEventListener("click", () => {
         setGroupExpanded(card, body.hidden);

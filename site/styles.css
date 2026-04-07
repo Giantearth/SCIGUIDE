@@ -720,6 +720,16 @@ a:focus-visible {
   gap: 12px;
 }
 
+.group-disclaimer {
+  padding: 14px 16px;
+  border: 1px solid rgba(47, 65, 74, 0.08);
+  border-radius: 16px;
+  background: rgba(244, 248, 249, 0.88);
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.7;
+}
+
 .doc-card {
   border-radius: 18px;
   border: 1px solid rgba(47, 65, 74, 0.08);
@@ -1216,6 +1226,12 @@ a:focus-visible {
   .doc-body {
     background: rgba(17, 28, 34, 0.92);
     border-color: rgba(199, 223, 231, 0.1);
+  }
+
+  .group-disclaimer {
+    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(199, 223, 231, 0.1);
+    color: rgba(230, 238, 241, 0.8);
   }
 
   .module-float-button,
