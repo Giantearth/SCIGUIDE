@@ -142,7 +142,7 @@ a:focus-visible {
 .brand-title {
   font-family: var(--font-display);
   font-size: 14px;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.005em;
 }
 
 .topbar-pill,
@@ -239,7 +239,7 @@ a:focus-visible {
   margin: 0;
   font-size: 11px;
   font-weight: 700;
-  letter-spacing: 0.22em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   opacity: 0.78;
 }
@@ -280,7 +280,7 @@ a:focus-visible {
   display: block;
   margin-bottom: 10px;
   font-size: 11px;
-  letter-spacing: 0.2em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   color: rgba(246, 251, 252, 0.7);
 }
@@ -504,6 +504,12 @@ a:focus-visible {
   max-width: 70ch;
 }
 
+.hero-copy p:empty,
+.panel-header p:empty,
+.article-view .empty-state:empty {
+  display: none;
+}
+
 .hero h2 {
   font-size: clamp(1.8rem, 3vw, 3rem);
   line-height: 1.08;
@@ -523,25 +529,35 @@ a:focus-visible {
 
 .floating-actions-host {
   position: relative;
+  min-width: 0;
+}
+
+.floating-action-stack {
+  display: grid;
+  gap: 10px;
 }
 
 .module-float-button {
   position: sticky;
   top: 120px;
-  width: 96px;
-  min-height: 96px;
-  padding: 14px 10px;
+  width: 112px;
+  min-height: 54px;
+  padding: 12px 14px;
   border: 1px solid rgba(47, 65, 74, 0.14);
-  border-radius: 28px;
+  border-radius: 999px;
   background: rgba(255, 252, 248, 0.95);
   color: var(--text);
   font: inherit;
   font-size: 13px;
   font-weight: 800;
-  line-height: 1.35;
+  line-height: 1.1;
   box-shadow: 0 16px 30px rgba(31, 43, 51, 0.12);
   backdrop-filter: blur(16px);
   cursor: pointer;
+}
+
+.module-float-button-secondary {
+  background: rgba(244, 248, 249, 0.92);
 }
 
 .module-float-button:disabled {
@@ -712,9 +728,11 @@ a:focus-visible {
 
 .doc-inline-title {
   margin: 0 0 14px;
-  font-family: var(--font-display);
+  font-family: var(--font-sans);
   font-size: 18px;
   line-height: 1.25;
+  letter-spacing: -0.01em;
+  word-spacing: -0.08em;
 }
 
 .doc-card-inline + .doc-card-inline {
@@ -829,7 +847,9 @@ a:focus-visible {
 .article-view h4 {
   margin-top: 1.35em;
   margin-bottom: 0.7em;
-  font-family: var(--font-display);
+  font-family: var(--font-sans);
+  letter-spacing: -0.01em;
+  word-spacing: -0.02em;
 }
 
 .article-view h1:first-child {
@@ -1017,6 +1037,29 @@ a:focus-visible {
     gap: 14px;
   }
 
+  .floating-actions-host {
+    position: fixed;
+    right: 14px;
+    bottom: 96px;
+    z-index: 30;
+  }
+
+  .floating-action-stack {
+    justify-items: end;
+  }
+
+  .module-float-button {
+    position: static;
+    width: auto;
+    min-width: 84px;
+    min-height: 46px;
+    padding: 0 14px;
+    border-radius: 999px;
+    font-size: 13px;
+    line-height: 1;
+    box-shadow: 0 12px 24px rgba(31, 43, 51, 0.18);
+  }
+
   .article-panel {
     position: static;
     max-height: none;
@@ -1030,6 +1073,16 @@ a:focus-visible {
 
   .side-stack {
     gap: 14px;
+  }
+
+  .source-list-sidebar .source-card {
+    padding: 16px;
+  }
+
+  .source-card strong {
+    margin-bottom: 10px;
+    font-size: 15px;
+    line-height: 1.35;
   }
 }
 

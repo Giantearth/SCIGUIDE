@@ -901,22 +901,35 @@
       setAllGroupsExpanded(false);
     });
 
-    if (floatingActionsHost && window.innerWidth > 1024) {
+    if (floatingActionsHost) {
+      floatingActionsHost.setAttribute("aria-hidden", "false");
+
+      const actionStack = document.createElement("div");
+      actionStack.className = "floating-action-stack";
+
       const currentGroupButton = document.createElement("button");
       currentGroupButton.type = "button";
       currentGroupButton.className = "module-float-button";
-      currentGroupButton.textContent = "折叠本模块";
-      floatingActionsHost.appendChild(currentGroupButton);
+      currentGroupButton.textContent = "折叠本组";
+
+      const topButton = document.createElement("button");
+      topButton.type = "button";
+      topButton.className = "module-float-button module-float-button-secondary";
+      topButton.textContent = "顶部";
+
+      actionStack.appendChild(currentGroupButton);
+      actionStack.appendChild(topButton);
+      floatingActionsHost.appendChild(actionStack);
 
       function updateCurrentModuleButton() {
         const currentCard = resolveCurrentGroupCard();
         currentGroupButton.disabled = !currentCard;
         if (!currentCard) {
-          currentGroupButton.textContent = "折叠本模块";
+          currentGroupButton.textContent = "折叠本组";
           return;
         }
         const title = currentCard.querySelector(".group-header strong")?.textContent?.trim() || "当前模块";
-        currentGroupButton.textContent = `折叠 ${title}`;
+        currentGroupButton.textContent = window.innerWidth <= 760 ? `折叠${title}` : `折叠 ${title}`;
       }
 
       currentGroupButton.addEventListener("click", () => {
@@ -929,6 +942,10 @@
         updateCurrentModuleButton();
       });
 
+      topButton.addEventListener("click", () => {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
+
       const onScroll = () => updateCurrentModuleButton();
       window.addEventListener("scroll", onScroll, { passive: true });
       window.addEventListener("resize", onScroll);
@@ -937,7 +954,7 @@
       state.teardownCurrentModuleButton = () => {
         window.removeEventListener("scroll", onScroll);
         window.removeEventListener("resize", onScroll);
-        currentGroupButton.remove();
+        actionStack.remove();
       };
     }
   }
@@ -1241,7 +1258,6 @@
       card.className = "source-card";
       card.innerHTML = `
         <strong>${guide.label}</strong>
-        <small>${guide.name}</small>
         <a class="guide-link" href="${guide.href}" target="_blank" rel="noopener noreferrer">打开原文</a>
       `;
       guidelineList.appendChild(card);
@@ -1272,7 +1288,7 @@
     const groups = buildRecommendedGroups(state.filters);
     renderGroupList(groups);
     buildSummaryItems();
-    resultSummary.textContent = "推荐内容已按数据库分组与当前筛选条件重新排序。";
+    resultSummary.textContent = "";
 
     const selectedExists = docs.some((doc) => doc.id === state.selectedDocId);
     if (!selectedExists) {

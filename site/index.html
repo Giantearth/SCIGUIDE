@@ -25,10 +25,6 @@
             <div class="copy-frame">
               <p class="eyebrow">Clinical Intake</p>
               <h1>脊髓损伤康复知识库网页原型</h1>
-              <p class="landing-lead">
-                输入患者基本条件后，系统会按照数据库中的节段、病因、阶段、AIS 和职业标注，
-                生成按模块排序的康复参考内容。
-              </p>
 
               <div class="landing-tags">
                 <span>阶段简介优先</span>
@@ -47,11 +43,6 @@
                   <span class="metric-kicker">Priority</span>
                   <strong>红旗征优先</strong>
                   <p>先看风险与禁忌，再向下查看训练与目标。</p>
-                </article>
-                <article class="metric-card">
-                  <span class="metric-kicker">Reading</span>
-                  <strong>左选右读</strong>
-                  <p>左侧看模块堆栈，右侧看当前条目的完整内容。</p>
                 </article>
               </div>
             </div>
@@ -184,13 +175,12 @@
               <ul>
                 <li>先看阶段简介与红旗征，再看其余模块</li>
                 <li>模块支持单独折叠，也支持全部展开或折叠</li>
-                <li>右侧详细阅读区始终显示当前选中条目</li>
+                <li>点击条目后可查看完整内容</li>
               </ul>
             </section>
 
             <section class="sidebar-note sidebar-guides">
               <h3>指南入口</h3>
-              <p class="muted muted-on-dark">原始指南文件入口，便于交叉查阅。</p>
               <div id="guideline-list" class="source-list source-list-sidebar"></div>
             </section>
           </div>
@@ -201,12 +191,11 @@
             <div class="hero-copy">
               <p class="eyebrow">Recommendation View</p>
               <h2>根据当前患者信息生成以下康复参考</h2>
-              <p id="result-summary" class="muted">推荐内容将按模块排序显示，并支持展开、折叠和详细阅读。</p>
+              <p id="result-summary" class="muted"></p>
             </div>
             <div class="hero-aside">
               <div class="hero-chip">Structured Match</div>
               <div class="hero-chip">Group-first Layout</div>
-              <div class="hero-chip">Deep Reading</div>
             </div>
           </section>
 
@@ -228,10 +217,9 @@
               <div class="panel article-panel">
                 <div class="panel-header">
                   <div>
-                    <p class="eyebrow">Reading Mode</p>
-                    <h3>详细阅读</h3>
+                    <h3>详细内容</h3>
                   </div>
-                  <p id="article-meta" class="muted">点击左侧任一条目后，这里会显示完整正文。</p>
+                  <p id="article-meta" class="muted"></p>
                 </div>
                 <article id="article-view" class="article-view">
                   <p class="empty-state">这里会显示当前选中条目的完整内容。</p>
