@@ -7,6 +7,20 @@ Sources: [[德国2025]], [[美国PVA]]
 ---
 
 # 缺血性脊髓损伤 (Ischemic SCI)
+%%META
+id: introduction-nontraumatic
+module: introduction
+displayGroup: introduction
+etiologies: nontraumatic
+subtypes: ischemic
+segments_exact: none
+segment_ranges: all
+stages: all
+professions: all
+ais: all
+priority: noraml
+sources: 德国2025，美国PVA
+%%
 
 由于脊髓血供中断或灌注不足导致的神经损害，属于非创伤性损伤的主要病因。
 
@@ -34,6 +48,20 @@ Sources: [[德国2025]]
 ---
 
 # 肿瘤性脊髓损伤 (Neoplastic SCI)
+%%META
+id: introduction-nontraumatic
+module: introduction
+displayGroup: introduction
+etiologies: nontraumatic
+subtypes: neoplastic
+segments_exact: none
+segment_ranges: all
+stages: all
+professions: all
+ais: all
+priority: noraml
+sources: 美国PVA,德国2025，中国2025
+%%
 
 通常指恶性肿瘤对脊髓或神经根的压迫，康复中的安全性管理与创伤性完全不同。
 
@@ -55,6 +83,19 @@ Sources: [[美国PVA]], [[德国2025]], [[中国2025]]
 ---
 
 # 其他非创伤性及特殊机制
+%%META
+id: introduction-nontraumatic
+module: introduction
+displayGroup: introduction
+etiologies: nontraumatic
+subtypes: other_nontraumatic
+segments_exact: none
+segment_ranges: all
+stages: all
+professions: all
+ais: all
+priority: noraml
+%%
 
 ## 特殊机制分类
 

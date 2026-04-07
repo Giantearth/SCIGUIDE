@@ -2,6 +2,20 @@ Parent: [[康复红旗征 (Red Flags) 总览]]
 ---
 
 # 深静脉血栓 (DVT) 与康复禁忌
+%%META
+id: rf-DVT
+module: redflags
+displayGroup: redflags
+etiologies: all
+subtypes: all
+segments_exact: none
+segment_ranges: all
+stages: all
+professions: all
+ais: all
+priority: critical
+summary: SCI 患者在伤后前 3 个月是 DVT 的极高危期。
+%%
 
 SCI 患者在伤后前 3 个月是 DVT 的极高危期。
 

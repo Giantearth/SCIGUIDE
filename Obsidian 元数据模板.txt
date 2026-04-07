@@ -1,0 +1,341 @@
+[通用模板]
+
+%%META
+id: 
+module: 
+displayGroup: 
+etiologies: all
+subtypes: all
+segments_exact: none
+segment_ranges: all
+stages: all
+professions: all
+ais: all
+priority: normal
+sources: 
+summary: 
+%%
+
+
+[红旗征模板]
+
+%%META
+id: rf-
+module: redflags
+displayGroup: redflags
+etiologies: all
+subtypes: all
+segments_exact: none
+segment_ranges: all
+stages: all
+professions: all
+ais: all
+priority: critical
+sources: 
+summary: 
+%%
+
+
+[创伤性红旗征模板]
+
+%%META
+id: rf-
+module: redflags
+displayGroup: redflags
+etiologies: traumatic
+subtypes: all
+segments_exact: none
+segment_ranges: all
+stages: all
+professions: all
+ais: all
+priority: critical
+sources: 
+summary: 
+%%
+
+
+[非创伤性-缺血性红旗征模板]
+
+%%META
+id: rf-
+module: redflags
+displayGroup: redflags
+etiologies: nontraumatic
+subtypes: ischemic
+segments_exact: none
+segment_ranges: all
+stages: all
+professions: all
+ais: all
+priority: critical
+sources: 
+summary: 
+%%
+
+
+[非创伤性-肿瘤性红旗征模板]
+
+%%META
+id: rf-
+module: redflags
+displayGroup: redflags
+etiologies: nontraumatic
+subtypes: neoplastic
+segments_exact: none
+segment_ranges: all
+stages: all
+professions: all
+ais: all
+priority: critical
+sources: 
+summary: 
+%%
+
+
+[非创伤性-其他类型红旗征模板]
+
+%%META
+id: rf-
+module: redflags
+displayGroup: redflags
+etiologies: nontraumatic
+subtypes: other_nontraumatic
+segments_exact: none
+segment_ranges: all
+stages: all
+professions: all
+ais: all
+priority: critical
+sources: 
+summary: 
+%%
+
+
+[节段模板]
+
+%%META
+id: 
+module: 
+displayGroup: 
+etiologies: all
+subtypes: all
+segments_exact: none
+segment_ranges: C1-T1
+stages: all
+professions: all
+ais: all
+priority: normal
+sources: 
+summary: 
+%%
+
+
+[具体节段模板]
+
+%%META
+id: 
+module: 
+displayGroup: 
+etiologies: all
+subtypes: all
+segments_exact: C5
+segment_ranges: none
+stages: all
+professions: all
+ais: all
+priority: normal
+sources: 
+summary: 
+%%
+
+
+[多个具体节段模板]
+
+%%META
+id: 
+module: 
+displayGroup: 
+etiologies: all
+subtypes: all
+segments_exact: C5,C6,C7
+segment_ranges: none
+stages: all
+professions: all
+ais: all
+priority: normal
+sources: 
+summary: 
+%%
+
+
+[节段范围模板]
+
+%%META
+id: 
+module: 
+displayGroup: 
+etiologies: all
+subtypes: all
+segments_exact: none
+segment_ranges: C1-C7
+stages: all
+professions: all
+ais: all
+priority: normal
+sources: 
+summary: 
+%%
+
+
+[病程模板]
+
+%%META
+id: 
+module: 
+displayGroup: 
+etiologies: all
+subtypes: all
+segments_exact: none
+segment_ranges: all
+stages: rehab
+professions: all
+ais: all
+priority: normal
+sources: 
+summary: 
+%%
+
+
+[职业模板]
+
+%%META
+id: 
+module: 
+displayGroup: 
+etiologies: all
+subtypes: all
+segments_exact: none
+segment_ranges: all
+stages: all
+professions: PT
+ais: all
+priority: normal
+sources: 
+summary: 
+%%
+
+
+[AIS 模板]
+
+%%META
+id: 
+module: 
+displayGroup: 
+etiologies: all
+subtypes: all
+segments_exact: none
+segment_ranges: all
+stages: all
+professions: all
+ais: A
+priority: normal
+sources: 
+summary: 
+%%
+
+
+[精确组合模板]
+
+%%META
+id: 
+module: 
+displayGroup: 
+etiologies: nontraumatic
+subtypes: neoplastic
+segments_exact: none
+segment_ranges: C1-C7
+stages: rehab
+professions: PT,OT
+ais: A,B,C,D,E
+priority: critical
+sources: 
+summary: 
+%%
+
+
+[字段允许值速查]
+
+module:
+redflags
+stage
+goals
+focus
+expectation
+complication
+function
+other
+
+displayGroup:
+redflags
+stage
+goals
+focus
+expectation
+complication
+function
+other
+
+etiologies:
+traumatic
+nontraumatic
+all
+
+subtypes:
+ischemic
+neoplastic
+other_nontraumatic
+all
+
+segments_exact:
+C1,C2,C3,C4,C5,C6,C7,C8
+T1,T2,T3,T4,T5,T6,T7,T8,T9,T10,T11,T12
+L1,L2,L3,L4,L5
+S1,S2,S3,S4,S5
+all
+none
+
+segment_ranges:
+C1-T1
+C1-C4
+C5-C8
+T2-T6
+T2-T12
+L1-S5
+all
+none
+
+stages:
+hyperacute
+acute
+rehab
+all
+
+professions:
+PT
+OT
+ST
+RESP
+all
+
+ais:
+A
+B
+C
+D
+E
+all
+
+priority:
+critical
+normal

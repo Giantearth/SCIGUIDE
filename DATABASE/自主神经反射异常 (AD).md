@@ -2,6 +2,21 @@ Parent: [[胸段脊髓损伤 (T2-T12)]]
 ---
 
 # 自主神经反射异常 (Autonomic Dysreflexia, AD)
+%%META
+id: rf-AD
+module: redflags
+displayGroup: redflags
+etiologies: all
+subtypes: all
+segments_exact: none
+segment_ranges: C1-T6
+stages: all
+professions: all
+ais: all
+priority: critical
+summary: 这是一种危及生命的临床急症，表现为血压突然飙升（收缩压较基线升高 >20 mmHg）。
+%%
+
 
 > [!DANGER] 紧急红旗（T6 及以上平面损伤专用）
 > 这是一种危及生命的临床急症，表现为血压突然飙升（收缩压较基线升高 >20 mmHg）。

@@ -1,0 +1,183 @@
+## 3. 详细节段康复目标与肌力要求
+
+### C1-C4
+
+%%META
+id: exp-level-c1-c4-mobility
+module: expectation
+displayGroup: expectation
+etiologies: all
+subtypes: all
+segments_exact: none
+segment_ranges: C1-C4
+stages: rehab
+professions: all
+ais: all
+priority: normal
+sources:
+summary: C1-C4 患者通常生活完全依赖，主要依靠电动轮椅。
+%%
+
+- **损伤节段**：C1-C4
+- **关键肌群（肌力 ≥ 3 级）**：仅保留颈部/膈肌功能
+- **预期移动/步行目标**：生活完全依赖；使用下巴、嘴或头部控制驱动电动轮椅。
+
+
+### C5
+
+%%META
+id: exp-level-c5-mobility
+module: expectation
+displayGroup: expectation
+etiologies: all
+subtypes: all
+segments_exact: C5
+segment_ranges: none
+stages: rehab
+professions: all
+ais: all
+priority: normal
+sources:
+summary: C5 患者多依赖电动轮椅，平地通常无法划动手动轮椅。
+%%
+
+- **损伤节段**：C5
+- **关键肌群（肌力 ≥ 3 级）**：肱二头肌（屈肘）
+- **预期移动/步行目标**：生活依赖；使用手指控制电动轮椅；平地无法划动手动轮椅。
+
+
+### C6-C8
+
+%%META
+id: exp-level-c6-c8-mobility
+module: expectation
+displayGroup: expectation
+etiologies: all
+subtypes: all
+segments_exact: none
+segment_ranges: C6-C8
+stages: rehab
+professions: all
+ais: all
+priority: normal
+sources:
+summary: C6-C8 患者可能实现独立翻身和转移，以手动轮椅为主。
+%%
+
+- **损伤节段**：C6-C8
+- **关键肌群（肌力 ≥ 3 级）**：伸腕/伸肘/手指关键肌
+- **预期移动/步行目标**：可能独立翻身及转移；使用手动轮椅，但在长距离或复杂环境下常需电动轮椅。
+
+
+### T1-T12
+
+%%META
+id: exp-level-t1-t12-mobility
+module: expectation
+displayGroup: expectation
+etiologies: all
+subtypes: all
+segments_exact: none
+segment_ranges: T1-T12
+stages: rehab
+professions: all
+ais: all
+priority: normal
+sources:
+summary: T1-T12 患者通常可手动轮椅独立，其中 T2-L2 具备短距离步行潜力。
+%%
+
+- **损伤节段**：T1-T12
+- **关键肌群（肌力 ≥ 3 级）**：腹肌/躯干关键肌
+- **预期移动/步行目标**：手动轮椅独立。
+
+
+### T2-L2 短距离步行潜力
+
+%%META
+id: exp-level-t2-l2-short-walk
+module: expectation
+displayGroup: expectation
+etiologies: all
+subtypes: all
+segments_exact: none
+segment_ranges: T2-L2
+stages: rehab
+professions: all
+ais: all
+priority: normal
+sources:
+summary: T2-L2 患者在完全支撑或助行器辅助下可进行短距离步行。
+%%
+
+- **损伤节段**：T2-L2
+- **关键信息**：在完全支撑或助行器辅助下可进行**短距离步行**。
+
+
+### L2
+
+%%META
+id: exp-level-l2-mobility
+module: expectation
+displayGroup: expectation
+etiologies: all
+subtypes: all
+segments_exact: L2
+segment_ranges: none
+stages: rehab
+professions: all
+ais: all
+priority: normal
+sources:
+summary: L2 节段具备功能性步行潜力，通常需要长下肢支具或腋拐辅助。
+%%
+
+- **损伤节段**：L2
+- **关键肌群（肌力 ≥ 3 级）**：髂腰肌（屈髋）
+- **预期移动/步行目标**：具备功能性步行潜力；通常需长下肢支具（KAFO）或腋拐辅助。
+
+
+### L3
+
+%%META
+id: exp-level-l3-key-threshold
+module: expectation
+displayGroup: expectation
+etiologies: all
+subtypes: all
+segments_exact: L3
+segment_ranges: none
+stages: rehab
+professions: all
+ais: all
+priority: normal
+sources:
+summary: L3 是步行康复的关键分水岭，伸膝肌力达到 3 级是脱离长支具的重要条件。
+%%
+
+- **损伤节段**：L3
+- **关键肌群（肌力 ≥ 3 级）**：股四头肌（伸膝）
+- **预期移动/步行目标**：**关键分水岭**；伸膝肌力 ≥ 3 级是脱离长支具、改用短支具（AFO）行走的先决条件。
+
+
+### L4-S1
+
+%%META
+id: exp-level-l4-s1-community-walk
+module: expectation
+displayGroup: expectation
+etiologies: all
+subtypes: all
+segments_exact: none
+segment_ranges: L4-S1
+stages: rehab
+professions: all
+ais: all
+priority: normal
+sources:
+summary: L4-S1 患者大多可实现社区水平步行，可能仅需 AFO 或无需支具。
+%%
+
+- **损伤节段**：L4-S1
+- **关键肌群（肌力 ≥ 3 级）**：胫骨前肌/趾长伸肌/腓肠肌
+- **预期移动/步行目标**：大部分患者可实现**社区水平步行**；可能仅需 AFO 或无需支具。

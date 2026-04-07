@@ -4,6 +4,9 @@ import path from "node:path";
 const databaseDir = path.resolve("D:/SCIGUIDEAPP/DATABASE");
 const guideDir = path.resolve("D:/SCIGUIDEAPP/GUIDE");
 const outputFile = path.resolve("D:/SCIGUIDEAPP/site/data.js");
+const excludedDatabaseFiles = new Set([
+  "病程分期康复管理总览.md",
+]);
 
 function firstMatch(content, pattern) {
   const match = content.match(pattern);
@@ -101,23 +104,25 @@ function deriveMeta(name, title, content) {
     addIfMatch(ais, text, `AIS ${grade}`, grade);
   }
 
+  const displayGroup = module === "redflags"
+    ? "redflags"
+    : module === "stage"
+      ? "stage"
+      : module === "goals"
+        ? "goals"
+        : module === "focus"
+          ? "focus"
+          : module === "expectation"
+            ? "expectation"
+            : module === "function"
+              ? "function"
+              : module === "complication"
+                ? "complication"
+                : "other";
+
   return {
     module,
-    displayGroup: module === "redflags"
-      ? "redflags"
-      : module === "stage"
-        ? "stage"
-        : module === "goals"
-          ? "goals"
-          : module === "focus"
-            ? "focus"
-            : module === "expectation"
-              ? "expectation"
-              : module === "function"
-                ? "function"
-                : module === "complication"
-                  ? "complication"
-                  : "other",
+    displayGroup,
     summary,
     etiologies,
     subtypes,
@@ -128,33 +133,164 @@ function deriveMeta(name, title, content) {
   };
 }
 
-const files = fs.readdirSync(databaseDir)
-  .filter((name) => name.endsWith(".md"))
-  .sort((a, b) => a.localeCompare(b, "zh-CN"));
+function normalizeMultiValue(value, fallback = []) {
+  if (!value) {
+    return fallback;
+  }
+  const trimmed = value.trim();
+  if (!trimmed) {
+    return fallback;
+  }
+  if (trimmed === "all") {
+    return [];
+  }
+  if (trimmed === "none") {
+    return [];
+  }
+  return trimmed
+    .split(/[,\s]+/)
+    .map((part) => part.trim())
+    .filter(Boolean);
+}
 
-const docs = files.map((name) => {
-  const fullPath = path.join(databaseDir, name);
-  const content = fs.readFileSync(fullPath, "utf8");
+function levelsFromSegments(segmentsExact, segmentRanges) {
+  const joined = [...segmentsExact, ...segmentRanges].join(",");
+  const levels = [];
+
+  if (/(^|,)\s*C\d|(^|,)\s*C1-T1|(^|,)\s*C1-C4|(^|,)\s*C5-C8/.test(joined)) {
+    levels.push("cervical");
+  }
+  if (/(^|,)\s*T\d|(^|,)\s*T2-T6|(^|,)\s*T2-T12/.test(joined)) {
+    levels.push("thoracic");
+  }
+  if (/(^|,)\s*L\d|(^|,)\s*S\d|(^|,)\s*L1-S5/.test(joined)) {
+    levels.push("lumbosacral");
+  }
+
+  return levels;
+}
+
+function parseMetaBlocks(content) {
+  const blockRegex = /%%META\s*\n([\s\S]*?)\n%%/g;
+  const matches = [...content.matchAll(blockRegex)];
+
+  return matches.map((match, index) => {
+    const blockText = match[1];
+    const blockStart = match.index ?? 0;
+    const blockEnd = blockStart + match[0].length;
+    const nextStart = matches[index + 1]?.index ?? content.length;
+    let sectionBody = content.slice(blockEnd, nextStart).trim();
+    sectionBody = sectionBody.replace(/(?:\n\s*)+#{2,6}\s+[^\n]+\s*$/u, "").trim();
+    const meta = {};
+
+    for (const line of blockText.split("\n")) {
+      const parsed = line.match(/^\s*([A-Za-z_][A-Za-z0-9_]*)\s*:\s*(.*)\s*$/);
+      if (!parsed) {
+        continue;
+      }
+      meta[parsed[1]] = parsed[2];
+    }
+
+    if (!sectionBody) {
+      return null;
+    }
+
+    return {
+      meta,
+      body: sectionBody,
+      start: blockStart,
+    };
+  }).filter(Boolean);
+}
+
+function nearestHeadingBefore(content, start) {
+  const before = content.slice(0, start);
+  const headingMatches = [...before.matchAll(/^(#{2,6})\s+(.+)$/gm)];
+  if (!headingMatches.length) {
+    return null;
+  }
+  return headingMatches[headingMatches.length - 1][2].trim();
+}
+
+function titleFromSection(content, section, fallback) {
+  const headingBefore = nearestHeadingBefore(content, section.start);
+
+  return firstMatch(section.body, /^\s*>\s*>?\s*##\s*(.+)$/m)
+    || headingBefore
+    || fallback;
+}
+
+function buildDocEntries(name, content) {
+  const baseId = path.basename(name, ".md");
   const title =
     firstMatch(content, /^Title:\s*(.+)$/m) ||
     firstMatch(content, /^#\s+(.+)$/m) ||
-    path.basename(name, ".md");
+    baseId;
   const type = firstMatch(content, /^Type:\s*(.+)$/m);
   const rawSources = allMatches(content, /\[\[([^\]]+)\]\]/g);
   const tagLine = firstMatch(content, /^#标签:\s*(.+)$/m);
   const tags = tagLine ? tagLine.split(/\s+/).map((tag) => tag.trim()).filter(Boolean) : [];
-    const derived = deriveMeta(path.basename(name, ".md"), title, content);
+  const metaSections = parseMetaBlocks(content);
 
-  return {
-    id: path.basename(name, ".md"),
-    path: `DATABASE/${name}`,
-    title,
-    type,
-    sources: [...new Set(rawSources.filter((value) => /中国|德国|日本|美国|PVA/.test(value)))],
-    tags,
-    content,
-    ...derived,
-  };
+  if (!metaSections.length) {
+    const derived = deriveMeta(baseId, title, content);
+    return [{
+      id: baseId,
+      path: `DATABASE/${name}`,
+      title,
+      type,
+      sources: [...new Set(rawSources.filter((value) => /中国|德国|日本|美国|PVA/.test(value)))],
+      tags,
+      content,
+      ...derived,
+    }];
+  }
+
+  return metaSections.map((section, index) => {
+    const derived = deriveMeta(baseId, title, section.body);
+    const meta = section.meta;
+    const docId = (meta.id && meta.id.trim() && meta.id.trim() !== "rf-")
+      ? meta.id.trim()
+      : `${baseId}-section-${index + 1}`;
+    const sectionTitle = titleFromSection(content, section, `${title} - ${index + 1}`);
+    const segmentsExact = normalizeMultiValue(meta.segments_exact);
+    const segmentRanges = normalizeMultiValue(meta.segment_ranges);
+    const explicitLevels = levelsFromSegments(segmentsExact, segmentRanges);
+    const sectionSources = normalizeMultiValue(meta.sources, [...new Set(rawSources.filter((value) => /中国|德国|日本|美国|PVA/.test(value)))]);
+
+    return {
+      id: docId,
+      path: `DATABASE/${name}#${docId}`,
+      title: sectionTitle,
+      type,
+      sources: sectionSources,
+      tags,
+      content: section.body,
+      module: meta.module?.trim() || derived.module,
+      displayGroup: meta.displayGroup?.trim() || derived.displayGroup,
+      summary: meta.summary?.trim() || derived.summary,
+      priority: meta.priority?.trim() || "normal",
+      etiologies: normalizeMultiValue(meta.etiologies, derived.etiologies),
+      subtypes: normalizeMultiValue(meta.subtypes, derived.subtypes),
+      levels: explicitLevels.length ? explicitLevels : derived.levels,
+      stages: normalizeMultiValue(meta.stages, derived.stages),
+      professions: normalizeMultiValue(meta.professions, derived.professions),
+      ais: normalizeMultiValue(meta.ais, derived.ais),
+      segments_exact: segmentsExact,
+      segment_ranges: segmentRanges,
+    };
+  });
+}
+
+const files = fs.readdirSync(databaseDir)
+  .filter((name) => name.endsWith(".md"))
+  .filter((name) => !excludedDatabaseFiles.has(name))
+  .sort((a, b) => a.localeCompare(b, "zh-CN"));
+
+const docs = files.flatMap((name) => {
+  const fullPath = path.join(databaseDir, name);
+  const content = fs.readFileSync(fullPath, "utf8");
+  return buildDocEntries(name, content);
 });
 
 const guideFiles = fs.existsSync(guideDir)
@@ -188,4 +324,5 @@ fs.writeFileSync(
   `window.__SCI_DATA__ = ${JSON.stringify(docs)};\nwindow.__SCI_GUIDES__ = ${JSON.stringify(guideFiles)};`,
   "utf8"
 );
+
 console.log(`Generated ${outputFile} with ${docs.length} docs and ${guideFiles.length} guides.`);

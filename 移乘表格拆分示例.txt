@@ -1,0 +1,172 @@
+## 移乘能力与节段对应拆分示例
+
+下面这份内容可以直接复制进你的 Obsidian 文档。
+原则是：
+- 表格本身可以保留给人看
+- 机器读取部分按“每一行一个 %%META 条目”拆开
+- 每个条目只对应一组明确节段
+
+
+## 1. 节段对应的移乘能力预期
+
+### C1-C4
+
+%%META
+id: function-transfer-c1-c4
+module: function
+displayGroup: function
+etiologies: all
+subtypes: all
+segments_exact: none
+segment_ranges: C1-C4
+stages: all
+professions: PT,OT
+ais: all
+priority: normal
+sources:
+summary: C1-C4 患者移乘通常完全依赖，需要 2 人以上协助或机械升降机。
+%%
+
+- **损伤节段**：C1-C4
+- **移乘能力预期**：完全依赖
+- **核心技术/工具**：需 2 人以上介助或使用机械升降机。
+
+
+### C5
+
+%%META
+id: function-transfer-c5
+module: function
+displayGroup: function
+etiologies: all
+subtypes: all
+segments_exact: C5
+segment_ranges: none
+stages: all
+professions: PT,OT
+ais: all
+priority: normal
+sources:
+summary: C5 患者移乘多为重度依赖，需要他人协助摆位并借助辅助工具。
+%%
+
+- **损伤节段**：C5
+- **移乘能力预期**：重度依赖
+- **核心技术/工具**：需他人协助摆放体位，利用万能袖带辅助支撑。
+
+
+### C6
+
+%%META
+id: function-transfer-c6
+module: function
+displayGroup: function
+etiologies: all
+subtypes: all
+segments_exact: C6
+segment_ranges: none
+stages: all
+professions: PT,OT
+ais: all
+priority: normal
+sources:
+summary: C6 是移乘能力的重要分水岭，可借助肌腱固定式抓握和滑板实现介助到独立转移。
+%%
+
+- **损伤节段**：C6
+- **移乘能力预期**：功能分水岭
+- **核心技术/工具**：核心是 [[肌腱固定式抓握 (Tenodesis grasp)]] 与惯性。部分年轻、体能好者可在滑板辅助下实现介助/独立转移。
+
+
+### C7-T1
+
+%%META
+id: function-transfer-c7-t1
+module: function
+displayGroup: function
+etiologies: all
+subtypes: all
+segments_exact: none
+segment_ranges: C7-T1
+stages: all
+professions: PT,OT
+ais: all
+priority: normal
+sources:
+summary: C7-T1 患者通常具备基本独立移乘能力，关键在于伸肘推起。
+%%
+
+- **损伤节段**：C7-T1
+- **移乘能力预期**：基本独立
+- **核心技术/工具**：核心是 **肱三头肌（伸肘）**。具备伸肘推起能力，能独立完成床-轮椅转移。
+
+
+### T2-L2
+
+%%META
+id: function-transfer-t2-l2
+module: function
+displayGroup: function
+etiologies: all
+subtypes: all
+segments_exact: none
+segment_ranges: T2-L2
+stages: all
+professions: PT,OT
+ais: all
+priority: normal
+sources:
+summary: T2-L2 患者通常可完全独立移乘，并能完成较复杂地形转移。
+%%
+
+- **损伤节段**：T2-L2
+- **移乘能力预期**：完全独立
+- **核心技术/工具**：具备良好的躯干平衡。可进行复杂地形转移（如轮椅到地面、轮椅到浴缸）。
+
+
+### L3-S5
+
+%%META
+id: function-transfer-l3-s5
+module: function
+displayGroup: function
+etiologies: all
+subtypes: all
+segments_exact: none
+segment_ranges: L3-S5
+stages: all
+professions: PT,OT
+ais: all
+priority: normal
+sources:
+summary: L3 及以下患者具备坐站转化潜力，关键在于伸膝能力。
+%%
+
+- **损伤节段**：L3 及以下
+- **移乘能力预期**：坐站转化潜力
+- **核心技术/工具**：核心是 **股四头肌（伸膝）**。具备从坐位直接站起并步行的潜力。
+
+
+## 2. 如果你想再精细化
+
+后面你还可以继续拆得更细，例如：
+
+- `C7`
+- `C8`
+- `T1`
+- `L3`
+- `L4-S1`
+
+如果你准备以后把输入端做得更精确，这样拆会更好。
+
+
+## 3. 当前最推荐的对应关系
+
+- `C1-C4`：完整保留为一条
+- `C5`：单独一条
+- `C6`：单独一条
+- `C7-T1`：保留为一条
+- `T2-L2`：保留为一条
+- `L3-S5`：先保留为一条
+
+这样工作量不大，但已经足够支持网页按节段筛选。

@@ -3,6 +3,21 @@ Parent: [[康复目标总览]]
 
 # 言语治疗 (ST) 目标
 
+%%META
+id: goals
+module: goals
+displayGroup: goals
+etiologies: all
+subtypes: all
+segments_exact: none
+segment_ranges: all
+stages: all
+professions: ST
+ais: all
+priority: normal
+summary: 核心任务：吞咽安全、言语交流与认知
+%%
+
 ## 核心任务：吞咽安全、言语交流与认知
 
 ### 1. 吞咽功能管理 (Dysphagia)

@@ -5,6 +5,21 @@ Sources: [[中国2025]], [[日本2021]], [[美国PVA]]
 
 # 直立性低血压 (Orthostatic Hypotension / 体位性低血压)
 
+%%META
+id: rf-OH
+module: redflags
+displayGroup: redflags
+etiologies: all
+subtypes: all
+segments_exact: none
+segment_ranges: all
+stages: all
+professions: all
+ais: all
+priority: critical
+summary: 指从仰卧位转变为直立位（坐位或站立）过程中或变换后 3 分钟内，血压出现显著下降
+%%
+
 > [!WARNING] 临床定义与红旗标准
 > 指从仰卧位转变为直立位（坐位或站立）过程中或变换后 **3 分钟内**，血压出现显著下降：
 > - **收缩压下降 ≥ 20 mmHg** 

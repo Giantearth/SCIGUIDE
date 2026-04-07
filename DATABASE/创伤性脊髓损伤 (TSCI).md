@@ -3,6 +3,20 @@ Sources: [[中国2025]], [[美国PVA]], [[日本2021]]
 ---
 
 # 创伤性脊髓损伤 (Traumatic SCI)
+%%META
+id: introduction-traumatic
+module: introduction
+displayGroup: introduction
+etiologies: traumatic
+subtypes: all
+segments_exact: none
+segment_ranges: all
+stages: all
+professions: all
+ais: all
+priority: noraml
+%%
+
 
 由各种外力导致脊柱脊髓复合损伤。这是目前指南研究最充分、证据最集中的领域。
 

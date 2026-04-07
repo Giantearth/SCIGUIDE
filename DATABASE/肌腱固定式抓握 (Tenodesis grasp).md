@@ -4,6 +4,19 @@ Sources: [[中国2025]], [[日本2021]]
 ---
 
 # 肌腱固定式抓握 (Tenodesis Grasp)
+%%META
+id: OT-goals
+module: goals
+displayGroup: goals
+etiologies: all
+subtypes: all
+segments_exact: none
+segment_ranges: C6-T12
+stages: all
+professions: OT
+ais: all
+priority: normal
+%%
 
 ## 1. 定义与原理
 肌腱固定式抓握是指利用人体解剖结构的生物力学特性，通过**腕关节的主动背屈（伸腕）**带动**指屈肌腱被动拉紧**，从而使手指产生被动屈曲，形成抓握动作的技术。
@@ -12,7 +25,7 @@ Sources: [[中国2025]], [[日本2021]]
 - **关键前提**：患者必须保留 **桡侧伸腕长肌** 的功能（肌力 $\ge 3$ 级）。
 - **临床意义**：这是 C6 四肢瘫患者实现功能独立的关键点。通过此技术，患者无需手指的主动力量即可自主抓握水杯、餐具或进行简单移动 。
 
-## 3. 康复师训练重点（OT/PT）
+## 3. 康复师训练重点（OT）
 
 > [!CAUTION] 康复训练红旗
 > 在急性期，**严禁过度牵拉指屈肌腱**。

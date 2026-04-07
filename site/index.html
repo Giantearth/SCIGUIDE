@@ -3,167 +3,245 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>SCI 治疗参考网页原型</title>
+    <title>SCI 康复决策支持原型</title>
     <link rel="stylesheet" href="./styles.css" />
   </head>
   <body>
-    <div id="landing-view" class="landing-view">
-      <section class="landing-panel">
-        <div class="landing-copy">
-          <p class="eyebrow">SCI GUIDE PROTOTYPE</p>
-          <h1>脊髓损伤治疗参考</h1>
-          <p class="landing-lead">
-            这是一个基于 `DATABASE` 的静态网页原型。首页只负责录入患者信息，生成后进入下一页查看推荐内容。
-          </p>
-          <div class="landing-tags">
-            <span>红旗征优先</span>
-            <span>职业粗筛</span>
-            <span>分步式流程</span>
-            <span>手机端优先</span>
+    <div class="page-shell">
+      <div class="page-glow page-glow-one" aria-hidden="true"></div>
+      <div class="page-glow page-glow-two" aria-hidden="true"></div>
+
+      <div id="landing-view" class="landing-view">
+        <header class="topbar">
+          <div class="brand-lockup">
+            <p class="eyebrow">SCI Decision Support</p>
+            <strong class="brand-title">SCI 康复决策支持原型</strong>
           </div>
-        </div>
+          <div class="topbar-pill">Database-driven prototype</div>
+        </header>
 
-        <form id="intake-form" class="intake-card landing-form">
-          <h2>患者信息录入</h2>
+        <main class="landing-panel">
+          <section class="landing-copy">
+            <div class="copy-frame">
+              <p class="eyebrow">Clinical Intake</p>
+              <h1>脊髓损伤康复知识库网页原型</h1>
+              <p class="landing-lead">
+                输入患者基本条件后，系统会按照数据库中的节段、病因、阶段、AIS 和职业标注，
+                生成按模块排序的康复参考内容。
+              </p>
 
-          <label>
-            <span>患者编号</span>
-            <input id="patient-id" name="patientId" type="text" placeholder="例如 PT001 / A12" />
-          </label>
+              <div class="landing-tags">
+                <span>阶段简介优先</span>
+                <span>红旗征集中展示</span>
+                <span>分模块深读</span>
+                <span>具体节段单选</span>
+              </div>
 
-          <label>
-            <span>病因</span>
-            <select id="etiology" name="etiology">
-              <option value="all">未限定</option>
-              <option value="traumatic">创伤性</option>
-              <option value="nontraumatic">非创伤性</option>
-            </select>
-          </label>
-
-          <label id="subtype-field" hidden>
-            <span>非创伤性具体分类</span>
-            <select id="subtype" name="subtype">
-              <option value="all">未限定</option>
-              <option value="ischemic">缺血性</option>
-              <option value="neoplastic">肿瘤性</option>
-              <option value="other_nontraumatic">其他非创伤性及特殊机制</option>
-            </select>
-          </label>
-
-          <label>
-            <span>损伤节段</span>
-            <select id="level" name="level">
-              <option value="all">未限定</option>
-              <option value="cervical">颈段 C1-C7</option>
-              <option value="thoracic">胸段 T1-T12</option>
-              <option value="lumbosacral">腰骶段 L1-S5</option>
-            </select>
-          </label>
-
-          <label>
-            <span>ASIA 分级</span>
-            <select id="asia" name="asia">
-              <option value="all">未限定</option>
-              <option value="A">AIS A</option>
-              <option value="B">AIS B</option>
-              <option value="C">AIS C</option>
-              <option value="D">AIS D</option>
-              <option value="E">AIS E</option>
-            </select>
-          </label>
-
-          <label>
-            <span>病程时长</span>
-            <select id="stage" name="stage">
-              <option value="all">未限定</option>
-              <option value="hyperacute">72h 内</option>
-              <option value="acute">14 天内</option>
-              <option value="rehab">14 天以上</option>
-            </select>
-          </label>
-
-          <label>
-            <span>您的职业</span>
-            <select id="profession" name="profession">
-              <option value="all">未限定</option>
-              <option value="PT">PT</option>
-              <option value="OT">OT</option>
-              <option value="ST">ST</option>
-              <option value="RESP">呼吸康复</option>
-            </select>
-          </label>
-
-          <div class="form-actions">
-            <button type="submit" class="primary-btn">生成推荐结果</button>
-            <button type="button" id="reset-form" class="ghost-btn ghost-btn-dark">重置</button>
-          </div>
-        </form>
-      </section>
-    </div>
-
-    <div id="results-view" class="results-view" hidden>
-      <aside class="results-sidebar">
-        <div class="brand">
-          <p class="eyebrow">CURRENT CASE</p>
-          <h2>当前患者信息</h2>
-          <p class="muted muted-on-dark">可以随时返回修改。</p>
-        </div>
-
-        <div id="case-summary" class="summary-card"></div>
-
-        <div class="form-actions">
-          <button type="button" id="edit-case" class="primary-btn">重新填写信息</button>
-        </div>
-
-        <section class="sidebar-note">
-          <h3>使用提示</h3>
-          <ul>
-            <li>先看红旗征，再往下看其他建议</li>
-            <li>其余模块保留折叠，减少干扰</li>
-            <li>四国指南入口先作为原文挂载区</li>
-          </ul>
-        </section>
-      </aside>
-
-      <main class="results-main">
-        <section class="hero">
-          <div>
-            <p class="eyebrow">RECOMMENDATION VIEW</p>
-            <h2>根据当前患者信息，根据指南生成以下建议</h2>
-            <p id="result-summary" class="muted">红旗征优先显示，其余内容按模块依次展开查看。</p>
-          </div>
-        </section>
-
-        <section class="content-grid">
-          <div class="panel">
-            <div class="panel-header">
-              <h3>推荐内容</h3>
-              <p class="muted">先列出全部红旗征，再向下查看其他模块内容。</p>
+              <div class="hero-metrics" aria-label="feature highlights">
+                <article class="metric-card">
+                  <span class="metric-kicker">Input</span>
+                  <strong>结构化录入</strong>
+                  <p>先录入患者条件，再进入推荐结果页。</p>
+                </article>
+                <article class="metric-card">
+                  <span class="metric-kicker">Priority</span>
+                  <strong>红旗征优先</strong>
+                  <p>先看风险与禁忌，再向下查看训练与目标。</p>
+                </article>
+                <article class="metric-card">
+                  <span class="metric-kicker">Reading</span>
+                  <strong>左选右读</strong>
+                  <p>左侧看模块堆栈，右侧看当前条目的完整内容。</p>
+                </article>
+              </div>
             </div>
-            <div id="result-groups" class="result-groups"></div>
-          </div>
+          </section>
 
-          <div class="panel">
-            <div class="panel-header">
-              <h3>四国指南入口</h3>
-              <p class="muted">当前先展示数据库中的来源名称。后续挂入 PDF 或附件后，这里可以变成原文阅读入口。</p>
-            </div>
-            <div id="guideline-list" class="source-list"></div>
-          </div>
-        </section>
+          <aside class="landing-side">
+            <form id="intake-form" class="intake-card landing-form">
+              <div class="card-intro">
+                <p class="eyebrow">Step 1</p>
+                <h2>患者信息录入</h2>
+              </div>
 
-        <section class="content-grid single-detail">
-          <div class="panel article-panel">
-            <div class="panel-header">
-              <h3>详细阅读</h3>
-              <p id="article-meta" class="muted">这里保留单篇完整阅读区，推荐内容区也会直接显示具体指导内容。</p>
+              <div class="form-grid">
+                <label>
+                  <span>病因</span>
+                  <select id="etiology" name="etiology">
+                    <option value="all">未限定</option>
+                    <option value="traumatic">创伤性</option>
+                    <option value="nontraumatic">非创伤性</option>
+                  </select>
+                </label>
+
+                <label id="subtype-field" hidden>
+                  <span>非创伤性分类</span>
+                  <select id="subtype" name="subtype">
+                    <option value="all">未限定</option>
+                    <option value="ischemic">缺血性</option>
+                    <option value="neoplastic">肿瘤性</option>
+                    <option value="other_nontraumatic">其他非创伤性及特殊机制</option>
+                  </select>
+                </label>
+
+                <label>
+                  <span>损伤节段</span>
+                  <select id="level" name="level">
+                    <option value="all">未限定</option>
+                    <option value="C1">C1</option>
+                    <option value="C2">C2</option>
+                    <option value="C3">C3</option>
+                    <option value="C4">C4</option>
+                    <option value="C5">C5</option>
+                    <option value="C6">C6</option>
+                    <option value="C7">C7</option>
+                    <option value="C8">C8</option>
+                    <option value="T1">T1</option>
+                    <option value="T2">T2</option>
+                    <option value="T3">T3</option>
+                    <option value="T4">T4</option>
+                    <option value="T5">T5</option>
+                    <option value="T6">T6</option>
+                    <option value="T7">T7</option>
+                    <option value="T8">T8</option>
+                    <option value="T9">T9</option>
+                    <option value="T10">T10</option>
+                    <option value="T11">T11</option>
+                    <option value="T12">T12</option>
+                    <option value="L1">L1</option>
+                    <option value="L2">L2</option>
+                    <option value="L3">L3</option>
+                    <option value="L4">L4</option>
+                    <option value="L5">L5</option>
+                    <option value="S1">S1</option>
+                    <option value="S2">S2</option>
+                    <option value="S3">S3</option>
+                    <option value="S4">S4</option>
+                    <option value="S5">S5</option>
+                  </select>
+                </label>
+
+                <label>
+                  <span>AIS 分级</span>
+                  <select id="asia" name="asia">
+                    <option value="all">未限定</option>
+                    <option value="A">AIS A</option>
+                    <option value="B">AIS B</option>
+                    <option value="C">AIS C</option>
+                    <option value="D">AIS D</option>
+                    <option value="E">AIS E</option>
+                  </select>
+                </label>
+
+                <label>
+                  <span>病程时长</span>
+                  <select id="stage" name="stage">
+                    <option value="all">未限定</option>
+                    <option value="hyperacute">72h 内</option>
+                    <option value="acute">14 天内</option>
+                    <option value="rehab">14 天以后</option>
+                  </select>
+                </label>
+
+                <label>
+                  <span>您的职业</span>
+                  <select id="profession" name="profession">
+                    <option value="all">未限定</option>
+                    <option value="PT">PT</option>
+                    <option value="OT">OT</option>
+                    <option value="ST">ST</option>
+                    <option value="RESP">呼吸康复</option>
+                  </select>
+                </label>
+              </div>
+
+              <div class="form-actions">
+                <button type="submit" class="primary-btn">生成推荐结果</button>
+                <button type="button" id="reset-form" class="ghost-btn ghost-btn-dark">重置</button>
+              </div>
+            </form>
+          </aside>
+        </main>
+      </div>
+
+      <div id="results-view" class="results-view" hidden>
+        <aside class="results-sidebar">
+          <div class="sidebar-shell">
+            <div class="brand">
+              <p class="eyebrow">Current Case</p>
+              <h2>当前患者信息</h2>
+              <p class="muted muted-on-dark">可以随时返回修改。</p>
             </div>
-            <article id="article-view" class="article-view">
-              <p class="empty-state">这里会显示所选条目的正文内容。</p>
-            </article>
+
+            <div id="case-summary" class="summary-card"></div>
+
+            <div class="form-actions stacked-actions">
+              <button type="button" id="edit-case" class="primary-btn">重新填写信息</button>
+            </div>
+
+            <section class="sidebar-note">
+              <h3>使用提示</h3>
+              <ul>
+                <li>先看阶段简介与红旗征，再看其余模块</li>
+                <li>模块支持单独折叠，也支持全部展开或折叠</li>
+                <li>右侧详细阅读区始终显示当前选中条目</li>
+              </ul>
+            </section>
+
+            <section class="sidebar-note sidebar-guides">
+              <h3>指南入口</h3>
+              <p class="muted muted-on-dark">原始指南文件入口，便于交叉查阅。</p>
+              <div id="guideline-list" class="source-list source-list-sidebar"></div>
+            </section>
           </div>
-        </section>
-      </main>
+        </aside>
+
+        <main class="results-main">
+          <section class="hero hero-surface">
+            <div class="hero-copy">
+              <p class="eyebrow">Recommendation View</p>
+              <h2>根据当前患者信息生成以下康复参考</h2>
+              <p id="result-summary" class="muted">推荐内容将按模块排序显示，并支持展开、折叠和详细阅读。</p>
+            </div>
+            <div class="hero-aside">
+              <div class="hero-chip">Structured Match</div>
+              <div class="hero-chip">Group-first Layout</div>
+              <div class="hero-chip">Deep Reading</div>
+            </div>
+          </section>
+
+          <section class="content-grid">
+            <div class="panel spotlight-panel">
+              <div class="panel-header">
+                <div>
+                  <p class="eyebrow">Module Stack</p>
+                  <h3>推荐内容</h3>
+                </div>
+                <p class="muted">页面顺序由前端控制，数据库只保留内容和标注。</p>
+              </div>
+              <div id="result-groups" class="result-groups"></div>
+            </div>
+
+            <div id="floating-actions-host" class="floating-actions-host" aria-hidden="true"></div>
+
+            <div class="side-stack">
+              <div class="panel article-panel">
+                <div class="panel-header">
+                  <div>
+                    <p class="eyebrow">Reading Mode</p>
+                    <h3>详细阅读</h3>
+                  </div>
+                  <p id="article-meta" class="muted">点击左侧任一条目后，这里会显示完整正文。</p>
+                </div>
+                <article id="article-view" class="article-view">
+                  <p class="empty-state">这里会显示当前选中条目的完整内容。</p>
+                </article>
+              </div>
+
+            </div>
+          </section>
+        </main>
+      </div>
     </div>
 
     <script src="./data.js"></script>

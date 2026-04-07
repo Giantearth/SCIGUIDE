@@ -4,6 +4,19 @@ Sources: [[日本2021]], [[美国PVA]]
 ---
 
 # 脊髓休克 (Spinal Shock)
+%%META
+id: introduction-spinal_shock
+module: introduction
+displayGroup: introduction
+etiologies: spinal_shock
+subtypes: all
+segments_exact: none
+segment_ranges: all
+stages: all
+professions: all
+ais: A
+priority: noraml
+%%
 
 脊髓休克是指急性脊髓损伤后，损伤平面以下脊髓功能（包括反射和自主神经功能）的暂时性完全丧失状态。
 
