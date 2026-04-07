@@ -1008,7 +1008,11 @@
       .replace(/`([^`]+)`/g, "<code>$1</code>")
       .replace(/\[\[([^\]|#]+)(?:#[^\]|]+)?(?:\|([^\]]+))?\]\]/g, (_, target, alias) => {
         const label = alias || target;
-        return `<a href="#" class="wiki-link" role="button" data-target="${escapeHtml(target)}">${escapeHtml(label)}</a>`;
+        const resolved = resolveDocTarget(target);
+        if (resolved) {
+          return `<a href="#" class="wiki-link" role="button" data-target="${escapeHtml(target)}">${escapeHtml(label)}</a>`;
+        }
+        return `<span class="wiki-chip-passive">${escapeHtml(label)}</span>`;
       });
   }
 

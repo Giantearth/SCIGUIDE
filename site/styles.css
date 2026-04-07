@@ -795,6 +795,25 @@ a:focus-visible {
   touch-action: manipulation;
 }
 
+.wiki-link::after {
+  content: "↗";
+  margin-left: 6px;
+  font-size: 12px;
+  opacity: 0.8;
+}
+
+.wiki-chip-passive {
+  display: inline-flex;
+  align-items: center;
+  min-height: 30px;
+  padding: 0 10px;
+  border: 1px solid rgba(47, 65, 74, 0.12);
+  border-radius: 999px;
+  background: rgba(241, 245, 246, 0.86);
+  color: var(--muted);
+  font-weight: 600;
+}
+
 .source-card {
   padding: 18px;
   border: 1px solid rgba(47, 65, 74, 0.08);
@@ -1192,6 +1211,40 @@ a:focus-visible {
   .source-panel,
   .article-panel {
     background: linear-gradient(180deg, rgba(19, 31, 37, 0.82), rgba(13, 23, 29, 0.84));
+  }
+
+  .doc-body {
+    background: rgba(17, 28, 34, 0.92);
+    border-color: rgba(199, 223, 231, 0.1);
+  }
+
+  .wiki-link {
+    background: rgba(73, 127, 149, 0.34);
+    border-color: rgba(127, 188, 214, 0.28);
+    color: #dff4fb;
+  }
+
+  .wiki-chip-passive {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(199, 223, 231, 0.12);
+    color: rgba(230, 238, 241, 0.74);
+  }
+
+  .admonition-warning,
+  .admonition-caution {
+    background: rgba(96, 71, 25, 0.34);
+    border-color: rgba(231, 186, 103, 0.3);
+  }
+
+  .admonition-danger {
+    background: rgba(110, 53, 53, 0.42);
+    border-color: rgba(227, 149, 149, 0.34);
+  }
+
+  .admonition-important,
+  .admonition-note {
+    background: rgba(43, 77, 92, 0.36);
+    border-color: rgba(133, 186, 210, 0.28);
   }
 
   .article-panel {
