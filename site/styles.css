@@ -1218,6 +1218,47 @@ a:focus-visible {
     border-color: rgba(199, 223, 231, 0.1);
   }
 
+  .module-float-button,
+  .module-float-button-secondary {
+    background: rgba(18, 39, 48, 0.94);
+    border-color: rgba(156, 209, 228, 0.18);
+    color: #f4fbfd;
+    box-shadow: 0 16px 28px rgba(0, 0, 0, 0.28);
+  }
+
+  body.mobile-article-open .article-panel {
+    background:
+      linear-gradient(180deg, rgba(12, 20, 25, 0.98), rgba(18, 28, 34, 0.98));
+    color: #eef7fa;
+  }
+
+  body.mobile-article-open .article-panel .panel-header {
+    background: rgba(12, 20, 25, 0.96);
+    border-bottom-color: rgba(199, 223, 231, 0.08);
+  }
+
+  body.mobile-article-open #article-meta,
+  body.mobile-article-open .article-panel .muted,
+  body.mobile-article-open .article-view p,
+  body.mobile-article-open .article-view li,
+  body.mobile-article-open .article-view blockquote,
+  body.mobile-article-open .article-view h1,
+  body.mobile-article-open .article-view h2,
+  body.mobile-article-open .article-view h3,
+  body.mobile-article-open .article-view h4 {
+    color: #eef7fa;
+  }
+
+  body.mobile-article-open .article-view code {
+    background: rgba(255, 255, 255, 0.08);
+    color: #f4fbfd;
+  }
+
+  body.mobile-article-open .article-view pre {
+    background: rgba(255, 255, 255, 0.06);
+    color: #eef7fa;
+  }
+
   .wiki-link {
     background: rgba(73, 127, 149, 0.34);
     border-color: rgba(127, 188, 214, 0.28);

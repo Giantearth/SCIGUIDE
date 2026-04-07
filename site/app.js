@@ -894,15 +894,16 @@
         attachWikiLinkHandlers(detail);
 
         button.addEventListener("click", () => {
-          if (isMobileLayout()) {
-            state.mobileReturnScrollTop = window.scrollY;
-          }
           state.selectedDocId = doc.id;
-          renderArticle(doc.id, { mobileOpen: true });
           resultGroups.querySelectorAll(".doc-button.active").forEach((node) => {
             node.classList.remove("active");
           });
           button.classList.add("active");
+
+          if (!isMobileLayout()) {
+            renderArticle(doc.id, { mobileOpen: false });
+          }
+
           detail.hidden = !detail.hidden;
         });
 
