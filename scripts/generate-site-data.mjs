@@ -4,6 +4,7 @@ import path from "node:path";
 const databaseDir = path.resolve("D:/SCIGUIDEAPP/DATABASE");
 const guideDir = path.resolve("D:/SCIGUIDEAPP/GUIDE");
 const outputFile = path.resolve("D:/SCIGUIDEAPP/site/data.js");
+const githubRepoBase = "https://github.com/Giantearth/SCIGUIDE/blob/main";
 const excludedDatabaseFiles = new Set([
   "病程分期康复管理总览.md",
 ]);
@@ -314,7 +315,7 @@ const guideFiles = fs.existsSync(guideDir)
         id: path.basename(name, path.extname(name)),
         name,
         label: source,
-        href: `../GUIDE/${encodeURIComponent(name).replace(/%2F/g, "/")}`,
+        href: `${githubRepoBase}/GUIDE/${encodeURIComponent(name).replace(/%2F/g, "/")}?raw=1`,
       };
     })
   : [];
