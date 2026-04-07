@@ -721,6 +721,7 @@ a:focus-visible {
 }
 
 .group-disclaimer {
+  margin: 12px 14px 0;
   padding: 14px 16px;
   border: 1px solid rgba(47, 65, 74, 0.08);
   border-radius: 16px;
