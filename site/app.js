@@ -859,13 +859,6 @@
       body.className = "group-body";
       body.hidden = !group.defaultOpen;
 
-      let preface = null;
-      if (group.key === "redflags") {
-        preface = document.createElement("div");
-        preface.className = "group-disclaimer";
-        preface.textContent = "仅根据四国指南提供一些信息参考，请以实际情况为准，本网站信息不提供专业医学诊断内容。";
-      }
-
       header.addEventListener("click", () => {
         setGroupExpanded(card, body.hidden);
       });
@@ -920,9 +913,6 @@
       });
 
       card.appendChild(header);
-      if (preface) {
-        card.appendChild(preface);
-      }
       card.appendChild(body);
       resultGroups.appendChild(card);
     });

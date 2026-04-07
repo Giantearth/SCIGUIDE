@@ -172,6 +172,17 @@ a:focus-visible {
   align-items: stretch;
 }
 
+.landing-disclaimer {
+  padding: 16px 18px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: var(--radius-md);
+  background: linear-gradient(180deg, rgba(18, 41, 51, 0.86), rgba(28, 62, 77, 0.78));
+  color: rgba(244, 249, 250, 0.86);
+  box-shadow: var(--shadow-soft), var(--shadow-glow);
+  line-height: 1.7;
+  backdrop-filter: blur(18px);
+}
+
 .landing-copy,
 .intake-card,
 .hero,
@@ -301,7 +312,7 @@ a:focus-visible {
 .landing-side {
   display: grid;
   gap: 16px;
-  align-content: center;
+  align-content: start;
 }
 
 .intake-card {
