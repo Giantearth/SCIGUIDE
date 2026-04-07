@@ -1081,6 +1081,10 @@
 
   function attachWikiLinkHandlers(scope) {
     scope.querySelectorAll(".wiki-link").forEach((button) => {
+      if (button.dataset.wikiBound === "true") {
+        return;
+      }
+      button.dataset.wikiBound = "true";
       button.addEventListener("click", () => {
         const doc = resolveDocTarget(button.getAttribute("data-target") || "");
         if (!doc) {
@@ -1278,6 +1282,7 @@
     attachWikiLinkHandlers(articleView);
     if (isMobileLayout() && options.mobileOpen !== false) {
       setMobileArticleOpen(true, { restoreScroll: false });
+      articleView.scrollTop = 0;
     }
   }
 
@@ -1390,6 +1395,25 @@
       setMobileArticleOpen(false);
     });
   }
+
+  document.addEventListener("click", (event) => {
+    const button = event.target.closest(".wiki-link");
+    if (!button) {
+      return;
+    }
+
+    const doc = resolveDocTarget(button.getAttribute("data-target") || "");
+    if (!doc) {
+      return;
+    }
+
+    event.preventDefault();
+    if (isMobileLayout()) {
+      state.mobileReturnScrollTop = window.scrollY;
+    }
+    state.selectedDocId = doc.id;
+    renderArticle(doc.id, { mobileOpen: true });
+  });
 
   etiologySelect.addEventListener("change", updateSubtypeVisibility);
 

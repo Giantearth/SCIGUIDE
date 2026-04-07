@@ -780,6 +780,8 @@ a:focus-visible {
 }
 
 .wiki-link {
+  -webkit-appearance: none;
+  appearance: none;
   display: inline-flex;
   align-items: center;
   min-height: 30px;
@@ -1075,10 +1077,12 @@ a:focus-visible {
   body.mobile-article-open .article-panel {
     position: fixed;
     inset: 0;
+    width: 100vw;
+    height: 100dvh;
     z-index: 80;
     display: grid;
     grid-template-rows: auto minmax(0, 1fr);
-    max-height: 100vh;
+    max-height: none;
     border-radius: 0;
     background:
       linear-gradient(180deg, rgba(255, 252, 248, 0.98), rgba(242, 247, 246, 0.98)),
@@ -1096,6 +1100,8 @@ a:focus-visible {
   }
 
   body.mobile-article-open .article-mobile-back {
+    -webkit-appearance: none;
+    appearance: none;
     position: fixed;
     right: 16px;
     bottom: 24px;
