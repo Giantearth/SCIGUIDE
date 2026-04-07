@@ -1008,7 +1008,7 @@
       .replace(/`([^`]+)`/g, "<code>$1</code>")
       .replace(/\[\[([^\]|#]+)(?:#[^\]|]+)?(?:\|([^\]]+))?\]\]/g, (_, target, alias) => {
         const label = alias || target;
-        return `<button type="button" class="wiki-link" data-target="${escapeHtml(target)}">${escapeHtml(label)}</button>`;
+        return `<a href="#" class="wiki-link" role="button" data-target="${escapeHtml(target)}">${escapeHtml(label)}</a>`;
       });
   }
 
@@ -1085,7 +1085,12 @@
         return;
       }
       button.dataset.wikiBound = "true";
-      button.addEventListener("click", () => {
+
+      const activate = (event) => {
+        if (event) {
+          event.preventDefault();
+          event.stopPropagation();
+        }
         const doc = resolveDocTarget(button.getAttribute("data-target") || "");
         if (!doc) {
           return;
@@ -1095,7 +1100,10 @@
         }
         state.selectedDocId = doc.id;
         renderArticle(doc.id, { mobileOpen: true });
-      });
+      };
+
+      button.addEventListener("click", activate);
+      button.addEventListener("touchend", activate, { passive: false });
     });
   }
 

@@ -791,6 +791,8 @@ a:focus-visible {
   background: rgba(214, 234, 240, 0.72);
   color: var(--primary-deep);
   cursor: pointer;
+  text-decoration: none;
+  touch-action: manipulation;
 }
 
 .source-card {
