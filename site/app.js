@@ -14,6 +14,7 @@
   const floatingActionsHost = document.getElementById("floating-actions-host");
   const articleView = document.getElementById("article-view");
   const articleMeta = document.getElementById("article-meta");
+  const mobileArticleBackButton = document.getElementById("mobile-article-back");
   const resultSummary = document.getElementById("result-summary");
   const guidelineList = document.getElementById("guideline-list");
   const caseSummary = document.getElementById("case-summary");
@@ -21,6 +22,8 @@
   const state = {
     selectedDocId: null,
     teardownCurrentModuleButton: null,
+    mobileArticleOpen: false,
+    mobileReturnScrollTop: 0,
     filters: {
       etiology: "all",
       subtype: "all",
@@ -233,6 +236,22 @@
     const usedIds = new Map();
     return rawDocs.map((doc) => normalizeDoc(doc, usedIds));
   })();
+
+  function isMobileLayout() {
+    return window.matchMedia("(max-width: 760px)").matches;
+  }
+
+  function setMobileArticleOpen(open, options = {}) {
+    state.mobileArticleOpen = open;
+    document.body.classList.toggle("mobile-article-open", open);
+
+    if (!open && options.restoreScroll !== false) {
+      window.scrollTo({
+        top: typeof state.mobileReturnScrollTop === "number" ? state.mobileReturnScrollTop : 0,
+        behavior: "smooth",
+      });
+    }
+  }
 
   function updateSubtypeVisibility() {
     const show = etiologySelect.value === "nontraumatic";
@@ -759,6 +778,7 @@
 
     if (!groups.length) {
       resultGroups.innerHTML = '<p class="empty-state">No matched content for the current filters.</p>';
+      setMobileArticleOpen(false, { restoreScroll: false });
       return;
     }
 
@@ -874,8 +894,11 @@
         attachWikiLinkHandlers(detail);
 
         button.addEventListener("click", () => {
+          if (isMobileLayout()) {
+            state.mobileReturnScrollTop = window.scrollY;
+          }
           state.selectedDocId = doc.id;
-          renderArticle(doc.id);
+          renderArticle(doc.id, { mobileOpen: true });
           resultGroups.querySelectorAll(".doc-button.active").forEach((node) => {
             node.classList.remove("active");
           });
@@ -1063,8 +1086,11 @@
         if (!doc) {
           return;
         }
+        if (isMobileLayout()) {
+          state.mobileReturnScrollTop = window.scrollY;
+        }
         state.selectedDocId = doc.id;
-        renderArticle(doc.id);
+        renderArticle(doc.id, { mobileOpen: true });
       });
     });
   }
@@ -1235,11 +1261,12 @@
     return html;
   }
 
-  function renderArticle(docId) {
+  function renderArticle(docId, options = {}) {
     const doc = docs.find((item) => item.id === docId) || docs[0];
     if (!doc) {
       articleMeta.textContent = "";
       articleView.innerHTML = '<p class="empty-state">暂无可显示内容。</p>';
+      setMobileArticleOpen(false, { restoreScroll: false });
       return;
     }
 
@@ -1249,6 +1276,9 @@
       ${markdownToHtml(buildDisplayContent(doc, state.filters))}
     `;
     attachWikiLinkHandlers(articleView);
+    if (isMobileLayout() && options.mobileOpen !== false) {
+      setMobileArticleOpen(true, { restoreScroll: false });
+    }
   }
 
   function renderGuidelines() {
@@ -1295,19 +1325,21 @@
       state.selectedDocId = groups[0]?.docs[0]?.id || null;
     }
     if (state.selectedDocId) {
-      renderArticle(state.selectedDocId);
+      renderArticle(state.selectedDocId, { mobileOpen: false });
     }
   }
 
   function openResultsView() {
     landingView.hidden = true;
     resultsView.hidden = false;
+    setMobileArticleOpen(false, { restoreScroll: false });
     window.scrollTo({ top: 0, behavior: "smooth" });
   }
 
   function openLandingView() {
     resultsView.hidden = true;
     landingView.hidden = false;
+    setMobileArticleOpen(false, { restoreScroll: false });
     window.scrollTo({ top: 0, behavior: "smooth" });
   }
 
@@ -1353,7 +1385,19 @@
     openLandingView();
   });
 
+  if (mobileArticleBackButton) {
+    mobileArticleBackButton.addEventListener("click", () => {
+      setMobileArticleOpen(false);
+    });
+  }
+
   etiologySelect.addEventListener("change", updateSubtypeVisibility);
+
+  window.addEventListener("resize", () => {
+    if (!isMobileLayout() && state.mobileArticleOpen) {
+      setMobileArticleOpen(false, { restoreScroll: false });
+    }
+  });
 
   renderGuidelines();
   applyDefaultFormState();
